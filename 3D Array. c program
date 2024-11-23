@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+int main() {
+    int scores[3][2];
+    int i, j;
+
+    // Initialize the array with the given values
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 2; j++) {
+            if (i == 0 && j == 0) {
+                scores[i][j] = 33;
+            } else if (i == 0 && j == 1) {
+                scores[i][j] = 52;
+            } else if (i == 1 && j == 0) {
+                scores[i][j] = 45;
+            } else if (i == 1 && j == 1) {
+                scores[i][j] = 98;
+            } else if (i == 2 && j == 0) {
+                scores[i][j] = 84;
+            } else if (i == 2 && j == 1) {
+                scores[i][j] = 76;
+            }
+        }
+    }
+
+    // Print the elements of the array using a nested for loop
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 2; j++) {
+            printf("%d ", scores[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
