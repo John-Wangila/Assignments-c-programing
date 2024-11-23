@@ -1,0 +1,78 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_LENGTH 200
+
+// Function to write user input to a file
+void write_to_file(char *paragraph) {
+    FILE *file = fopen("output.txt", "w");
+    if (file == NULL) {
+        printf("Error: Unable to open file for writing.\n");
+        return;
+    }
+    fprintf(file, "%s", paragraph);
+    fclose(file);
+}
+
+// Function to read content from a file
+void read_from_file() {
+    FILE *file = fopen("output.txt", "r");
+    if (file == NULL) {
+        printf("Error: Unable to open file for reading.\n");
+        return;
+    }
+    char line[100];
+    while (fgets(line, sizeof(line), file)!= NULL) {
+        printf("%s", line);
+    }
+    fclose(file);
+}
+
+// Function to append content to a file
+void append_to_file(char *paragraph) {
+    FILE *file = fopen("output.txt", "a");
+    if (file == NULL) {
+        printf("Error: Unable to open file for appending.\n");
+        return;
+    }
+    fprintf(file, "%s", paragraph);
+    fclose(file);
+}
+
+int main() {
+    char paragraph[MAX_LENGTH];
+    int choice;
+
+    do {
+        printf("1. Write to file\n");
+        printf("2. Read from file\n");
+        printf("3. Append to file\n");
+        printf("4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Enter a paragraph: ");
+                fgets(paragraph, sizeof(paragraph), stdin);
+                write_to_file(paragraph);
+                break;
+            case 2:
+                read_from_file();
+                break;
+            case 3:
+                printf("Enter a paragraph to append: ");
+                fgets(paragraph, sizeof(paragraph), stdin);
+                append_to_file(paragraph);
+                break;
+            case 4:
+                printf("Exiting the program.\n");
+                return 0;
+            default:
+                printf("Invalid choice. Please enter a valid option.\n");
+        }
+    } while (1);
+
+    return 0;
+}
